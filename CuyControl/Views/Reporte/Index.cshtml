@@ -1,0 +1,82 @@
+﻿@model CuyControl.Web.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h2>Reporte General</h2>
+
+<div class="row mt-4">
+
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-primary">
+            <div class="card-body">
+                <h6>Total Cuyes</h6>
+                <h2>@Model.TotalCuyes</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-success">
+            <div class="card-body">
+                <h6>Cuyes Activos</h6>
+                <h2>@Model.CuyesActivos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-warning">
+            <div class="card-body">
+                <h6>Cuyes Vendidos</h6>
+                <h2>@Model.CuyesVendidos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-danger">
+            <div class="card-body">
+                <h6>Cuyes Muertos</h6>
+                <h2>@Model.CuyesMuertos</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        Indicadores económicos y productivos
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Total Ventas</th>
+                <td>S/ @Model.TotalVentas</td>
+            </tr>
+            <tr>
+                <th>Ventas Este Mes</th>
+                <td>S/ @Model.VentasEsteMes</td>
+            </tr>
+            <tr>
+                <th>Total Galpones</th>
+                <td>@Model.TotalGalpones</td>
+            </tr>
+            <tr>
+                <th>Registros Este Mes</th>
+                <td>@Model.RegistrosEsteMes</td>
+            </tr>
+            <tr>
+                <th>Peso Promedio</th>
+                <td>@Model.PesoPromedioCuyes g</td>
+            </tr>
+            <tr>
+                <th>Última Actualización</th>
+                <td>@Model.UltimaActualizacion.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        </table>
+    </div>
+</div>

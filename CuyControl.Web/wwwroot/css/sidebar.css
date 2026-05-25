@@ -1,0 +1,3 @@
+/* CSS mínimo para sidebar */
+nav ul { list-style:none; padding:0; }
+nav li { margin:6px 0; }

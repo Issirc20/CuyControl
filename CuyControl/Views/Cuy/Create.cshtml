@@ -1,0 +1,79 @@
+@model CuyControl.Web.ViewModels.CuyViewModel
+
+<h2>Registrar Cuy</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Código</label>
+        <input asp-for="Codigo" class="form-control" />
+        <span asp-validation-for="Codigo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fecha de nacimiento</label>
+        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Sexo</label>
+        <select asp-for="SexoId" class="form-control">
+            <option value="">Seleccione</option>
+            <option value="1">Macho</option>
+            <option value="2">Hembra</option>
+        </select>
+        <span asp-validation-for="SexoId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Estado</label>
+        <select asp-for="EstadoId" class="form-control">
+            <option value="">Seleccione</option>
+            <option value="1">Cría</option>
+            <option value="2">Recría</option>
+            <option value="3">Reproductor</option>
+            <option value="4">Gestante</option>
+            <option value="5">Lactante</option>
+            <option value="6">Venta</option>
+            <option value="7">Muerto</option>
+        </select>
+        <span asp-validation-for="EstadoId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Jaula</label>
+        <input asp-for="JaulaId" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Peso Actual</label>
+        <input asp-for="PesoActual" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="PesoActual" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Raza</label>
+        <input asp-for="Raza" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Observaciones</label>
+        <textarea asp-for="Observaciones" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Guardar
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancelar
+    </a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

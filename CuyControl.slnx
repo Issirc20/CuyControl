@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CuyControl.Application/CuyControl.Application.csproj" />
+  <Project Path="CuyControl.Domain/CuyControl.Domain.csproj" />
+  <Project Path="CuyControl.Infrastructure/CuyControl.Infrastructure.csproj" />
+  <Project Path="CuyControl.Tests/CuyControl.Tests.csproj" />
+  <Project Path="CuyControl/CuyControl.csproj" />
+</Solution>

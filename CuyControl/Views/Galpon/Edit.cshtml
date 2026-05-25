@@ -1,0 +1,25 @@
+﻿@model CuyControl.Web.ViewModels.GalponViewModel
+
+<h2>Editar Galpón</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ubicación</label>
+        <input asp-for="Ubicacion" class="form-control" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Activo" class="form-check-input" />
+        <label class="form-check-label">Activo</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

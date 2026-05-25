@@ -1,0 +1,44 @@
+@model IEnumerable<CuyControl.Web.ViewModels.AlimentacionViewModel>
+
+@{
+    ViewData["Title"] = "Alimentaciones";
+}
+
+<div class="container mt-4">
+    <h2>Registros de Alimentación</h2>
+
+    <a asp-action="Create" class="btn btn-primary mb-3">Registrar Alimentación</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Jaula</th>
+                <th>Cantidad (kg)</th>
+                <th>Tipo</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FechaAlimentacion.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.JaulaCodigo</td>
+                    <td>@item.CantidadAlimento</td>
+                    <td>@item.TipoAlimento</td>
+                    <td>@item.UsuarioId</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <form asp-action="Delete" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar registro?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+﻿@model CuyControl.Web.ViewModels.GalponViewModel
+
+<h2>Detalle del Galpón</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Nombre:</strong> @Model.Nombre</p>
+        <p><strong>Ubicación:</strong> @Model.Ubicacion</p>
+        <p><strong>Estado:</strong> @(Model.Activo ? "Activo" : "Inactivo")</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>

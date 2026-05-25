@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CuyControl.Web.ViewModels.JaulaViewModel>
+
+@{
+    ViewData["Title"] = "Jaulas";
+}
+
+<h2>Gestión de Jaulas</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Nueva Jaula
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Capacidad</th>
+            <th>Galpón</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var jaula in Model)
+        {
+            <tr>
+                <td>@jaula.Codigo</td>
+                <td>@jaula.Capacidad</td>
+                <td>@jaula.GalponNombre</td>
+                <td>
+                    @(jaula.Activo ? "Disponible" : "Ocupada")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@jaula.Id" class="btn btn-warning btn-sm">Editar</a>
+
+                    <form asp-action="Delete" asp-route-id="@jaula.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar esta jaula?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+@model CuyControl.Web.ViewModels.AlimentacionViewModel
+
+@{
+    ViewData["Title"] = "Editar Alimentación";
+}
+
+<div class="container mt-4">
+    <h2>Editar Alimentación</h2>
+
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="JaulaId" class="form-label">Jaula</label>
+            <select asp-for="JaulaId" class="form-select" asp-items="ViewBag.Jaulas"></select>
+            <span asp-validation-for="JaulaId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FechaAlimentacion" class="form-label">Fecha y hora</label>
+            <input asp-for="FechaAlimentacion" type="datetime-local" class="form-control" />
+            <span asp-validation-for="FechaAlimentacion" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CantidadAlimento" class="form-label">Cantidad (kg)</label>
+            <input asp-for="CantidadAlimento" class="form-control" />
+            <span asp-validation-for="CantidadAlimento" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TipoAlimento" class="form-label">Tipo de alimento</label>
+            <input asp-for="TipoAlimento" class="form-control" />
+            <span asp-validation-for="TipoAlimento" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Observaciones" class="form-label">Observaciones</label>
+            <textarea asp-for="Observaciones" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,19 @@
+﻿@model CuyControl.Web.ViewModels.VentaViewModel
+
+<h2>Detalle de Venta</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Cuy:</strong> @Model.CuyCodigo</p>
+        <p><strong>Fecha:</strong> @Model.FechaVenta.ToShortDateString()</p>
+        <p><strong>Precio Unitario:</strong> S/ @Model.PrecioUnitario</p>
+        <p><strong>Cantidad:</strong> @Model.Cantidad</p>
+        <p><strong>Total:</strong> S/ @Model.PrecioTotal</p>
+        <p><strong>Comprador:</strong> @Model.NombreComprador</p>
+        <p><strong>Contacto:</strong> @Model.ContactoComprador</p>
+        <p><strong>Método Pago:</strong> @Model.MetodoPago</p>
+        <p><strong>Observaciones:</strong> @Model.Observaciones</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>

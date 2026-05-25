@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h1 class="text-danger">Error</h1>
+        <p>Ocurrió un error mientras se procesaba su solicitud.</p>
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        <p>
+            <strong>ID de Solicitud:</strong> @(Context.TraceIdentifier ?? "N/A")
+        </p>
+    </div>
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+        Volver al inicio
+    </a>
+</div>

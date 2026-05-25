@@ -1,0 +1,63 @@
+﻿@model CuyControl.Web.ViewModels.JaulaViewModel
+
+@{
+    ViewData["Title"] = "Nueva Jaula";
+}
+
+<h2>Registrar Jaula</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Código</label>
+        <input asp-for="Codigo" class="form-control" />
+        <span asp-validation-for="Codigo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Capacidad</label>
+        <input asp-for="Capacidad" class="form-control" />
+        <span asp-validation-for="Capacidad" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Galpón</label>
+
+        <select asp-for="GalponId"
+                asp-items="ViewBag.Galpones"
+                class="form-select">
+
+            <option value="">Seleccione</option>
+
+        </select>
+
+        <span asp-validation-for="GalponId"
+              class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Activo" class="form-check-input" />
+        <label class="form-check-label">
+            Disponible
+        </label>
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+
+        Guardar
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+
+        Cancelar
+    </a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

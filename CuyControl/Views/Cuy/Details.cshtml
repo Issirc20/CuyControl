@@ -1,0 +1,43 @@
+@model CuyControl.Web.ViewModels.CuyViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Cuy";
+}
+
+<div class="container mt-4">
+    <h2>Detalles del Cuy</h2>
+
+    <dl class="row">
+        <dt class="col-sm-3">Código</dt>
+        <dd class="col-sm-9">@Model.Codigo</dd>
+
+        <dt class="col-sm-3">Fecha Nacimiento</dt>
+        <dd class="col-sm-9">@Model.FechaNacimiento.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-3">Sexo</dt>
+        <dd class="col-sm-9">@Model.SexoNombre</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9">@Model.EstadoNombre</dd>
+
+        <dt class="col-sm-3">Jaula</dt>
+        <dd class="col-sm-9">@Model.JaulaId</dd>
+
+        <dt class="col-sm-3">Peso</dt>
+        <dd class="col-sm-9">@Model.PesoActual g</dd>
+
+        <dt class="col-sm-3">Raza</dt>
+        <dd class="col-sm-9">@Model.Raza</dd>
+
+        <dt class="col-sm-3">Observaciones</dt>
+        <dd class="col-sm-9">@Model.Observaciones</dd>
+    </dl>
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <form asp-action="Delete" method="post" class="d-inline">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar este cuy?');">Eliminar</button>
+    </form>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>

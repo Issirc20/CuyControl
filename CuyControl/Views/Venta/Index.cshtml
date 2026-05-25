@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CuyControl.Web.ViewModels.VentaViewModel>
+
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h2>Gestión de Ventas</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Nueva Venta
+</a>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Cuy</th>
+            <th>Fecha</th>
+            <th>Precio Unitario</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Comprador</th>
+            <th>Método Pago</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var venta in Model)
+        {
+            <tr>
+
+                <td>@venta.CuyCodigo</td>
+
+                <td>@venta.FechaVenta.ToShortDateString()</td>
+
+                <td>S/ @venta.PrecioUnitario</td>
+
+                <td>@venta.Cantidad</td>
+
+                <td>S/ @venta.PrecioTotal</td>
+
+                <td>@venta.NombreComprador</td>
+
+                <td>@venta.MetodoPago</td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@venta.Id"
+                       class="btn btn-info btn-sm">
+                        Ver
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@venta.Id"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form asp-action="Delete"
+                          asp-route-id="@venta.Id"
+                          method="post"
+                          style="display:inline;">
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar esta venta?');">
+
+                            Eliminar
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,80 @@
+@model CuyControl.Web.ViewModels.CuyViewModel
+
+@{
+    ViewData["Title"] = "Editar Cuy";
+}
+
+<div class="container mt-4">
+    <h2>Editar Cuy</h2>
+
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Codigo" class="form-label">Código</label>
+            <input asp-for="Codigo" class="form-control" />
+            <span asp-validation-for="Codigo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input asp-for="FechaNacimiento" type="date" class="form-control" />
+            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="SexoId" class="form-label">Sexo</label>
+                <select asp-for="SexoId" class="form-select">
+                    <option value="1">Macho</option>
+                    <option value="2">Hembra</option>
+                </select>
+                <span asp-validation-for="SexoId" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="EstadoId" class="form-label">Estado</label>
+                <select asp-for="EstadoId" class="form-select">
+                    <option value="1">Activo</option>
+                    <option value="2">Enfermo</option>
+                    <option value="3">Muerto</option>
+                    <option value="4">Vendido</option>
+                    <option value="5">En Cuarentena</option>
+                </select>
+                <span asp-validation-for="EstadoId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="JaulaId" class="form-label">Jaula</label>
+            <input asp-for="JaulaId" type="number" class="form-control" />
+            <span asp-validation-for="JaulaId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PesoActual" class="form-label">Peso (gramos)</label>
+            <input asp-for="PesoActual" class="form-control" />
+            <span asp-validation-for="PesoActual" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Raza" class="form-label">Raza</label>
+            <input asp-for="Raza" class="form-control" />
+            <span asp-validation-for="Raza" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Observaciones" class="form-label">Observaciones</label>
+            <textarea asp-for="Observaciones" class="form-control"></textarea>
+            <span asp-validation-for="Observaciones" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

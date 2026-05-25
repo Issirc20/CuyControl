@@ -1,0 +1,14 @@
+﻿@model CuyControl.Web.ViewModels.ControlPesoViewModel
+
+<h2>Detalle del Control de Peso</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Cuy:</strong> @Model.CuyCodigo</p>
+        <p><strong>Peso:</strong> @Model.Peso g</p>
+        <p><strong>Fecha:</strong> @Model.FechaPesaje.ToShortDateString()</p>
+        <p><strong>Observaciones:</strong> @Model.Observaciones</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>

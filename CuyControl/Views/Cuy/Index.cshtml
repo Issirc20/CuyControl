@@ -1,0 +1,45 @@
+@model IEnumerable<CuyControl.Web.ViewModels.CuyViewModel>
+
+<h2>Inventario de Cuyes</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Registrar Cuy</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Fecha Nacimiento</th>
+            <th>Sexo</th>
+            <th>Estado</th>
+            <th>Jaula</th>
+            <th>Peso Actual</th>
+            <th>Raza</th>
+            <th>Observaciones</th>
+            <th>Edad Días</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cuy in Model)
+        {
+            <tr>
+                <td>@cuy.Codigo</td>
+                <td>@cuy.FechaNacimiento.ToShortDateString()</td>
+                <td>@(cuy.SexoId == 1 ? "Macho" : "Hembra")</td>
+                <td>@cuy.EstadoId</td>
+                <td>@cuy.JaulaId</td>
+                <td>@cuy.PesoActual</td>
+                <td>@cuy.Raza</td>
+                <td>@cuy.Observaciones</td>
+                <td>@cuy.EdadDias</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@cuy.Id" class="btn btn-info btn-sm">Ver</a>
+                    <a asp-action="Edit" asp-route-id="@cuy.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@cuy.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
