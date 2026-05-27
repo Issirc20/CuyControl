@@ -1,8 +1,8 @@
 using CuyControl.Infrastructure.Identity;
 using CuyControl.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 namespace CuyControl.Controllers;
 
@@ -53,7 +53,11 @@ public class AccountController : Controller
         if (result.Succeeded)
         {
             _logger.LogInformation("Usuario {UserName} inició sesión.", user.UserName);
-            return RedirectToLocal(viewModel.ReturnUrl);
+
+            if (!string.IsNullOrEmpty(viewModel.ReturnUrl) && Url.IsLocalUrl(viewModel.ReturnUrl))
+                return Redirect(viewModel.ReturnUrl);
+
+            return RedirectToAction("Index", "Home");
         }
 
         ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
@@ -93,6 +97,7 @@ public class AccountController : Controller
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -108,13 +113,5 @@ public class AccountController : Controller
     {
         await _signInManager.SignOutAsync();
         return RedirectToAction("Login");
-    }
-
-    private IActionResult RedirectToLocal(string? returnUrl)
-    {
-        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-            return Redirect(returnUrl);
-
-        return RedirectToAction("Index", "Home");
     }
 }

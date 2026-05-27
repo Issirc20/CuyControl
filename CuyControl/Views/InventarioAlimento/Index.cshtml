@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CuyControl.Web.ViewModels.InventarioAlimentoViewModel>
+
+@{
+    ViewData["Title"] = "Inventario de Alimentos";
+}
+
+<h2>Inventario de Alimentos</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Nuevo Alimento</a>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Tipo</th>
+            <th>Cantidad Actual</th>
+            <th>Cantidad Mínima</th>
+            <th>Estado Stock</th>
+            <th>Costo Unitario</th>
+            <th>Última Reposición</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TipoAlimento</td>
+                <td>@item.CantidadActual</td>
+                <td>@item.CantidadMinima</td>
+                <td>
+                    @if (item.StockBajo)
+                    {
+                        <span class="badge bg-danger">Stock bajo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Disponible</span>
+                    }
+                </td>
+                <td>S/. @item.CostoUnitario</td>
+                <td>
+                    @(item.FechaUltimaReposicion.HasValue
+                        ? item.FechaUltimaReposicion.Value.ToString("dd/MM/yyyy")
+                        : "-")
+                </td>
+                <td>@item.Observaciones</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,11 +1,17 @@
 @model IEnumerable<CuyControl.Web.ViewModels.CuyViewModel>
 
+@{
+    ViewData["Title"] = "Inventario de Cuyes";
+}
+
 <h2>Inventario de Cuyes</h2>
 
-<a asp-action="Create" class="btn btn-primary mb-3">Registrar Cuy</a>
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Registrar Cuy
+</a>
 
-<table class="table table-bordered table-striped">
-    <thead>
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>Código</th>
             <th>Fecha Nacimiento</th>
@@ -19,24 +25,101 @@
             <th>Acciones</th>
         </tr>
     </thead>
+
     <tbody>
         @foreach (var cuy in Model)
         {
             <tr>
                 <td>@cuy.Codigo</td>
+
                 <td>@cuy.FechaNacimiento.ToShortDateString()</td>
-                <td>@(cuy.SexoId == 1 ? "Macho" : "Hembra")</td>
-                <td>@cuy.EstadoId</td>
-                <td>@cuy.JaulaId</td>
-                <td>@cuy.PesoActual</td>
-                <td>@cuy.Raza</td>
-                <td>@cuy.Observaciones</td>
-                <td>@cuy.EdadDias</td>
+
                 <td>
-                    <a asp-action="Details" asp-route-id="@cuy.Id" class="btn btn-info btn-sm">Ver</a>
-                    <a asp-action="Edit" asp-route-id="@cuy.Id" class="btn btn-warning btn-sm">Editar</a>
-                    <form asp-action="Delete" asp-route-id="@cuy.Id" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    @if (cuy.SexoId == 1)
+                    {
+                        <span class="badge bg-primary">Macho</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Hembra</span>
+                    }
+                </td>
+
+                <td>
+                    @switch (cuy.EstadoId)
+                    {
+                        case 1:
+                            <span class="badge bg-info">Cría</span>
+                            break;
+
+                        case 2:
+                            <span class="badge bg-primary">Recría</span>
+                            break;
+
+                        case 3:
+                            <span class="badge bg-success">Reproductor / Venta</span>
+                            break;
+
+                        case 4:
+                            <span class="badge bg-warning text-dark">Gestante</span>
+                            break;
+
+                        case 5:
+                            <span class="badge bg-secondary">Lactante</span>
+                            break;
+
+                        case 6:
+                            <span class="badge bg-dark">Vendido</span>
+                            break;
+
+                        case 7:
+                            <span class="badge bg-danger">Muerto</span>
+                            break;
+
+                        default:
+                            <span class="badge bg-light text-dark">Sin estado</span>
+                            break;
+                    }
+                </td>
+
+                <td>
+                    @(cuy.JaulaId.HasValue ? cuy.JaulaId.ToString() : "Sin jaula")
+                </td>
+
+                <td>@cuy.PesoActual g</td>
+
+                <td>@cuy.Raza</td>
+
+                <td>@cuy.Observaciones</td>
+
+                <td>@cuy.EdadDias</td>
+
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@cuy.Id"
+                       class="btn btn-info btn-sm">
+                        Ver
+                    </a>
+
+                    @if (cuy.EstadoId != 6 && cuy.EstadoId != 7)
+                    {
+                        <a asp-action="Edit"
+                           asp-route-id="@cuy.Id"
+                           class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                    }
+
+                    <form asp-action="Delete"
+                          asp-route-id="@cuy.Id"
+                          method="post"
+                          style="display:inline;">
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar este cuy?');">
+                            Eliminar
+                        </button>
                     </form>
                 </td>
             </tr>

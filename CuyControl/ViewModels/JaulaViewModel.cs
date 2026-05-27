@@ -13,6 +13,16 @@ public class JaulaViewModel
     [Required(ErrorMessage = "La capacidad es requerida")]
     public int Capacidad { get; set; }
 
+    /// <summary>
+    /// Cantidad actual de cuyes en la jaula
+    /// </summary>
+    public int CantidadActual { get; set; }
+
+    /// <summary>
+    /// Porcentaje de ocupación de la jaula
+    /// </summary>
+    public decimal PorcentajeOcupacion { get; set; }
+
     [Required(ErrorMessage = "Seleccione un galpón")]
     public int GalponId { get; set; }
 

@@ -34,6 +34,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<Parto> Partos { get; set; }
     public DbSet<Mortalidad> Mortalidades { get; set; }
     public DbSet<Venta> Ventas { get; set; }
+    public DbSet<MovimientoAlimento> MovimientosAlimento { get; set; }
 
     /// <summary>
     /// Configura el modelado de las entidades.
@@ -46,6 +47,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         modelBuilder.ApplyConfiguration(new CuyConfiguration());
         modelBuilder.ApplyConfiguration(new VentaConfiguration());
         modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+        modelBuilder.ApplyConfiguration(new MovimientoAlimentoConfiguration());
+        modelBuilder.ApplyConfiguration(new InventarioAlimentoConfiguration());
 
         // Configuración adicional de Identity
         ConfigureIdentity(modelBuilder);
@@ -67,6 +70,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("ApplicationUserLogins");
         modelBuilder.Entity<IdentityUserToken<int>>().ToTable("ApplicationUserTokens");
         modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("ApplicationRoleClaims");
+        
     }
 
     /// <summary>

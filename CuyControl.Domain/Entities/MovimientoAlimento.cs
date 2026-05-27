@@ -9,7 +9,7 @@ public class MovimientoAlimento : IBaseEntity, IAuditable
     public int InventarioAlimentoId { get; set; }
     public TipoMovimientoAlimentoEnum TipoMovimiento { get; set; }
     public decimal Cantidad { get; set; }
-    public DateTime FechaMovimiento { get; set; }
+    public DateTime FechaMovimiento { get; set; } = DateTime.Now;
     public string? Observaciones { get; set; }
 
     public int UsuarioId { get; set; }

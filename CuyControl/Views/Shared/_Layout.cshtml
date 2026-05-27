@@ -51,7 +51,8 @@
             <a asp-controller="Cuy" asp-action="Index">Inventario de Cuyes</a>
             <a asp-controller="Galpon" asp-action="Index">Galpones</a>
             <a asp-controller="Jaula" asp-action="Index">Jaulas</a>
-            <a asp-controller="Alimentacion" asp-action="Index">Alimentación</a>
+            <a asp-controller="InventarioAlimento" asp-action="Index">Inventario de Alimentos</a>
+            <a asp-controller="MovimientoAlimento" asp-action="Index">Movimientos de Alimento</a>
             <a asp-controller="Sanidad" asp-action="Index">Sanidad</a>
             <a asp-controller="Reproduccion" asp-action="Index">Reproducción</a>
             <a asp-controller="Venta" asp-action="Index">Ventas</a>
@@ -86,6 +87,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

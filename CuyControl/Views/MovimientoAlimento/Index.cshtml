@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CuyControl.Domain.Entities.MovimientoAlimento>
+
+@{
+    ViewData["Title"] = "Movimientos de Alimento";
+}
+
+<h2>Movimientos de Alimento</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Nuevo Movimiento
+</a>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Alimento</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.InventarioAlimento?.TipoAlimento</td>
+                <td>@item.TipoMovimiento</td>
+                <td>@item.Cantidad</td>
+                <td>@item.FechaMovimiento.ToString("dd/MM/yyyy")</td>
+                <td>@item.Observaciones</td>
+            </tr>
+        }
+    </tbody>
+</table>
